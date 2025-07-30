@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Al rededor de los EE.UU. TripleTen" />
+    <meta name="author" content="Joshua Sanchez" />
+    <meta name="keywords" content="html, css, javascript" />
+    <title>Al rededor de los EE.UU.</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!---Ventana emergente--->
+      <div class="popup">
+        <!---Boton de cierre--->
+
+        <!---Formularios--->
+        <form class="popup__container">
+          <button type="button" class="popup__button popup__button_close">
+            🞩
+          </button>
+          <h2 class="popup__subtitle">Editar Perfil</h2>
+          <fieldset class="popup__content">
+            <input
+              type="text"
+              class="popup__input popup__input_name"
+              placeholder="Nombre"
+            />
+            <input
+              type="text"
+              class="popup__input popup__input_about"
+              placeholder="Acerca de mi"
+            />
+          </fieldset>
+          <!---Boton de guardar--->
+          <fieldset class="popup__content">
+            <button
+              type="submit"
+              class="popup__button popup__button_save"
+              disabled
+            >
+              Guardar
+            </button>
+          </fieldset>
+        </form>
+      </div>
+      <!---Cabecera--->
+      <header class="header">
+        <img src="./images/logo.svg" alt="logo" class="header__image" />
+      </header>
+      <main class="main">
+        <!---Perfil--->
+        <div class="main__profile">
+          <div class="main__profile-image">
+            <img
+              src="./images/profile.png"
+              alt="profile-image"
+              class="main__profile-photo"
+            />
+          </div>
+          <div class="main__profile-description">
+            <p class="main__paragraph main__description_name">Joshua Sánchez</p>
+            <p class="main__paragraph main__description_role">Estudiante</p>
+            <button type="button" class="main__button main__button_edit">
+              🖌
+            </button>
+          </div>
+          <!---Añadir a Galeria--->
+          <button type="button" class="main__button main__button_add">🞣</button>
+        </div>
+        <!---Galeria--->
+        <div class="main__gallery">
+          <!---Tarjeta 1--->
+          <div class="main__gallery-card">
+            <img
+              src="./images/valle-yosemite.png"
+              alt="valle-yosemite"
+              class="main__gallery-image"
+            />
+            <div class="main__gallery-content">
+              <p class="main__gallery-paragraph">Valle de Yosemite</p>
+              <button type="button" class="main__button main__button_like">
+                <img
+                  src="./images/Like-btn.svg"
+                  alt="Like-button"
+                  class="main__gallery-like"
+                />
+              </button>
+            </div>
+          </div>
+          <!---Tarjeta 2--->
+          <div class="main__gallery-card">
+            <img
+              src="./images/lago-louise.png"
+              alt="Lago-Louise"
+              class="main__gallery-image"
+            />
+            <div class="main__gallery-content">
+              <p class="main__gallery-paragraph">Lago Louise</p>
+              <button type="button" class="main__button main__button_like">
+                <img
+                  src="./images/Like-btn.svg"
+                  alt="Like-button"
+                  class="main__gallery-like"
+                />
+              </button>
+            </div>
+          </div>
+          <!---Tarjeta 3--->
+          <div class="main__gallery-card">
+            <img
+              src="./images/montañas-calvas.png"
+              alt="Montañas Calvas"
+              class="main__gallery-image"
+            />
+            <div class="main__gallery-content">
+              <p class="main__gallery-paragraph">Montañas Calvas</p>
+              <button type="button" class="main__button main__button_like">
+                <img
+                  src="./images/Like-btn.svg"
+                  alt="Like-button"
+                  class="main__gallery-like"
+                />
+              </button>
+            </div>
+          </div>
+          <!---Tarjeta 4--->
+          <div class="main__gallery-card">
+            <img
+              src="./images/latemar.png"
+              alt="Latemar"
+              class="main__gallery-image"
+            />
+            <div class="main__gallery-content">
+              <p class="main__gallery-paragraph">Latemar</p>
+              <button type="button" class="main__button main__button_like">
+                <img
+                  src="./images/Like-btn.svg"
+                  alt="Like-button"
+                  class="main__gallery-like"
+                />
+              </button>
+            </div>
+          </div>
+          <!---Tarjeta 5--->
+          <div class="main__gallery-card">
+            <img
+              src="./images/vanois-national-park.png"
+              alt="vanois-national-park"
+              class="main__gallery-image"
+            />
+            <div class="main__gallery-content">
+              <p class="main__gallery-paragraph">Vanois National Park</p>
+              <button type="button" class="main__button main__button_like">
+                <img
+                  src="./images/Like-btn.svg"
+                  alt="Like-button"
+                  class="main__gallery-like"
+                />
+              </button>
+            </div>
+          </div>
+          <!---Tarjeta 6--->
+          <div class="main__gallery-card">
+            <img
+              src="/images/lago-braies.png"
+              alt="lago-braies"
+              class="main__gallery-image"
+            />
+            <div class="main__gallery-content">
+              <p class="main__gallery-paragraph">Lago di Braises</p>
+              <button type="button" class="main__button main__button_like">
+                <img
+                  src="./images/Like-btn.svg"
+                  alt="Like-button"
+                  class="main__gallery-like"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2025 Around The U.S.</p>
+      </footer>
+    </div>
+    <script src="./script/script.js"></script>
+  </body>
+</html>
