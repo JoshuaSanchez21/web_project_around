@@ -36,7 +36,7 @@
   max-width: 415px;
 }
 
-.main__description_name {
+.main__paragraph_name {
   grid-column: 1 / 4;
   margin: 0;
   font-size: 42px;
@@ -45,7 +45,7 @@
   padding-top: 22px;
 }
 
-.main__description_role {
+.main__paragraph_role {
   grid-column: 1 / 5;
   grid-row: 2;
   margin: 0;
@@ -142,13 +142,13 @@
     grid-template-rows: repeat(2, 20px);
   }
 
-  .main__description_name {
+  .main__paragraph_name {
     font-size: 22px;
     padding: 0;
     line-height: normal;
   }
 
-  .main__description_role {
+  .main__paragraph_role {
     padding: 0;
     font-size: 14px;
   }
@@ -180,12 +180,12 @@
     padding-bottom: 40px;
   }
 
-  .main__description_name {
+  .main__paragraph_name {
     font-size: 30px;
     line-height: normal;
   }
 
-  .main__description_role {
+  .main__paragraph_role {
     font-size: 14px;
   }
 
