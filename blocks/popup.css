@@ -84,8 +84,8 @@
 
 @media screen and (min-width: 320px) and (max-width: 585px) {
   .popup__button_close {
-    right: 300px;
-    top: 100px;
+    top: -35px;
+    right: -35px;
   }
 
   .popup__container {
@@ -108,8 +108,8 @@
 
 @media screen and (min-width: 585px) and (max-width: 880px) {
   .popup__button_close {
-    right: 300px;
-    top: 100px;
+    top: -35px;
+    right: -35px;
   }
 
   .popup__container {
