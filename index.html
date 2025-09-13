@@ -12,9 +12,7 @@
   <body>
     <div class="page">
       <!---Ventana emergente--->
-      <div class="popup">
-        <!---Boton de cierre--->
-
+      <div class="popup popup_profile">
         <!---Formularios--->
         <form class="popup__container">
           <button type="button" class="popup__button popup__button_close">
@@ -40,6 +38,33 @@
               class="popup__button popup__button_save"
               disabled
             >
+              Guardar
+            </button>
+          </fieldset>
+        </form>
+      </div>
+      <div class="popup popup_add-card">
+        <!---Formularios--->
+        <form class="popup__container">
+          <button type="button" class="popup__button popup__button_close">
+            🞩
+          </button>
+          <h2 class="popup__subtitle">Agregar Tarjeta</h2>
+          <fieldset class="popup__content">
+            <input
+              type="text"
+              class="popup__input popup__input_name"
+              placeholder="Nombre"
+            />
+            <input
+              type="url"
+              class="popup__input popup__input_link"
+              placeholder="https://"
+            />
+          </fieldset>
+          <!---Boton de guardar--->
+          <fieldset class="popup__content">
+            <button type="submit" class="popup__button popup__button_save">
               Guardar
             </button>
           </fieldset>
@@ -72,118 +97,35 @@
         <!---Galeria--->
         <div class="main__gallery">
           <!---Tarjeta 1--->
-          <div class="main__gallery-card">
-            <img
-              src="./images/valle-yosemite.png"
-              alt="valle-yosemite"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Valle de Yosemite</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Like-btn.svg"
-                  alt="Like-button"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <!---Tarjeta 2--->
-          <div class="main__gallery-card">
-            <img
-              src="./images/lago-louise.png"
-              alt="Lago-Louise"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Lago Louise</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Like-btn.svg"
-                  alt="Like-button"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <!---Tarjeta 3--->
-          <div class="main__gallery-card">
-            <img
-              src="./images/montañas-calvas.png"
-              alt="Montañas Calvas"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Montañas Calvas</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Like-btn.svg"
-                  alt="Like-button"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <!---Tarjeta 4--->
-          <div class="main__gallery-card">
-            <img
-              src="./images/latemar.png"
-              alt="Latemar"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Latemar</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Like-btn.svg"
-                  alt="Like-button"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <!---Tarjeta 5--->
-          <div class="main__gallery-card">
-            <img
-              src="./images/vanois-national-park.png"
-              alt="vanois-national-park"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Vanois National Park</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Like-btn.svg"
-                  alt="Like-button"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <!---Tarjeta 6--->
-          <div class="main__gallery-card">
-            <img
-              src="./images/lago-braies.png"
-              alt="lago-braies"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Lago di Braies</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Like-btn.svg"
-                  alt="Like-button"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
         </div>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2025 Around The U.S.</p>
       </footer>
+    </div>
+    <template class="template-card">
+      <div class="main__gallery-card">
+        <img
+          src="./images/valle-yosemite.png"
+          alt="valle-yosemite"
+          class="main__gallery-image"
+        />
+        <button type="button" class="main__button main__button_trash"></button>
+        <div class="main__gallery-content">
+          <p class="main__gallery-paragraph">Valle de Yosemite</p>
+          <button type="button" class="main__button main__button_like"></button>
+        </div>
+      </div>
+    </template>
+    <!-- Popup para imágenes -->
+    <div class="popup popup_image">
+      <div class="popup__container popup__container_image">
+        <button type="button" class="popup__button popup__button_close">
+          🞩
+        </button>
+        <img src="" alt="" class="popup__img" />
+        <p class="popup__caption"></p>
+      </div>
     </div>
     <script src="scripts/index.js"></script>
   </body>
