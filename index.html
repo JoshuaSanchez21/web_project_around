@@ -13,8 +13,8 @@
     <div class="page">
       <!---Ventana emergente--->
       <div class="popup popup_profile">
-        <!---Formularios--->
-        <form class="popup__container">
+        <!---Formulario editar perfil--->
+        <form class="popup__container popup__form">
           <button type="button" class="popup__button popup__button_close">
             🞩
           </button>
@@ -25,11 +25,13 @@
               class="popup__input popup__input_name"
               placeholder="Nombre"
             />
+            <p class="error-message"></p>
             <input
               type="text"
               class="popup__input popup__input_about"
               placeholder="Acerca de mi"
             />
+            <p class="error-message"></p>
           </fieldset>
           <!---Boton de guardar--->
           <fieldset class="popup__content">
@@ -44,8 +46,8 @@
         </form>
       </div>
       <div class="popup popup_add-card">
-        <!---Formularios--->
-        <form class="popup__container">
+        <!---Formulario agregar tarjetas--->
+        <form class="popup__container popup__form">
           <button type="button" class="popup__button popup__button_close">
             🞩
           </button>
@@ -56,11 +58,13 @@
               class="popup__input popup__input_name"
               placeholder="Nombre"
             />
+            <p class="error-message"></p>
             <input
               type="url"
               class="popup__input popup__input_link"
               placeholder="https://"
             />
+            <p class="error-message"></p>
           </fieldset>
           <!---Boton de guardar--->
           <fieldset class="popup__content">

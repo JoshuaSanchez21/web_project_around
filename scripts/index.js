@@ -1,57 +1,126 @@
-//Editar perfil
-
+// --- POPUP EDITAR PERFIL ---
 const editButton = document.querySelector(".main__button_edit");
-const popup = document.querySelector(".popup_profile");
-const closeButton = popup.querySelector(".popup__button_close");
-const form = popup.querySelector(".popup__container");
+const popupProfile = document.querySelector(".popup_profile");
+const closeButtonProfile = popupProfile.querySelector(".popup__button_close");
+const formProfile = popupProfile.querySelector(".popup__container");
 const inName = document.querySelector(".main__paragraph_name");
 const inAbout = document.querySelector(".main__paragraph_role");
-const inpName = popup.querySelector(".popup__input_name");
-const inpAbout = popup.querySelector(".popup__input_about");
-const saveButton = popup.querySelector(".popup__button_save");
+const inpName = popupProfile.querySelector(".popup__input_name");
+const inpAbout = popupProfile.querySelector(".popup__input_about");
+const saveButtonProfile = popupProfile.querySelector(".popup__button_save");
 
-function openEditEmpty() {
-  inpName.value = "";
-  inpAbout.value = "";
-  saveButton.disabled = true;
-  popup.classList.add("popup_opened");
-}
-
-function closePopup() {
+function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
 
-function validateInputs() {
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+
+// Validación individual
+function showError(input, message) {
+  const errorElement = input.nextElementSibling;
+  errorElement.textContent = message;
+  errorElement.style.display = "block";
+  input.classList.add("error");
+}
+
+function hideError(input) {
+  const errorElement = input.nextElementSibling;
+  errorElement.textContent = "";
+  errorElement.style.display = "none";
+  input.classList.remove("error");
+}
+
+function validateInputField(input) {
+  const value = input.value.trim();
+  if (value === "") {
+    showError(input, "No puede dejar este campo en blanco.");
+    return false;
+  } else if (value.length < 2) {
+    showError(
+      input,
+      `Por favor, alargue el contenido a por lo menos 2 caracteres. Actualmente ha ingresado ${value.length}.`
+    );
+    return false;
+  } else {
+    hideError(input);
+    return true;
+  }
+}
+
+function validateInputURL(input) {
+  const value = input.value.trim();
+  if (value === "") {
+    showError(input, "No puede dejar este campo en blanco.");
+    return false;
+  } else if (!value.startsWith("http://") && !value.startsWith("https://")) {
+    showError(
+      input,
+      "Por favor ingrese un URL válido que comience con 'http://' o 'https://'."
+    );
+    return false;
+  } else {
+    hideError(input);
+    return true;
+  }
+}
+
+function validateProfileInputs() {
   const isNameValid = inpName.value.trim() !== "";
   const isAboutValid = inpAbout.value.trim() !== "";
-  saveButton.disabled = !(isNameValid && isAboutValid);
+  saveButtonProfile.disabled = !(isNameValid && isAboutValid);
 }
 
-function openEdit() {
+// Abrir y cerrar popup de perfil
+function openPopupProfile() {
   inpName.value = "";
   inpAbout.value = "";
-  validateInputs();
-
-  popup.classList.toggle("popup_opened");
+  hideError(inpName);
+  hideError(inpAbout);
+  validateProfileInputs();
+  openPopup(popupProfile);
 }
 
-inpName.addEventListener("input", validateInputs);
-inpAbout.addEventListener("input", validateInputs);
-editButton.addEventListener("click", openEdit);
-closeButton.addEventListener("click", openEdit);
+function closePopupProfile() {
+  closePopup(popupProfile);
+}
 
-function saveChange(e) {
+// Listeners perfil
+inpName.addEventListener("input", function () {
+  validateInputField(inpName);
+  validateProfileInputs();
+});
+
+inpAbout.addEventListener("input", function () {
+  validateInputField(inpAbout);
+  validateProfileInputs();
+});
+
+editButton.addEventListener("click", openPopupProfile);
+closeButtonProfile.addEventListener("click", closePopupProfile);
+
+formProfile.addEventListener("submit", function (e) {
   e.preventDefault();
-  inName.textContent = inpName.value;
-  inAbout.textContent = inpAbout.value;
-  openEdit();
-}
+  const isNameValid = validateInputField(inpName);
+  const isAboutValid = validateInputField(inpAbout);
 
-form.addEventListener("submit", saveChange);
+  if (isNameValid && isAboutValid) {
+    inName.textContent = inpName.value;
+    inAbout.textContent = inpAbout.value;
+    closePopupProfile();
+  }
+});
 
-//Añadir tarjeta
-
+// --- POPUP AGREGAR TARJETAS ---
 const gallery = document.querySelector(".main__gallery");
+const addButton = document.querySelector(".main__button_add");
+const popupAddCard = document.querySelector(".popup_add-card");
+const closeButtonAddCard = popupAddCard.querySelector(".popup__button_close");
+const formAddCard = popupAddCard.querySelector(".popup__container");
+const inpNameAddCard = popupAddCard.querySelector(".popup__input_name");
+const inpLink = popupAddCard.querySelector(".popup__input_link");
+const saveButtonAddCard = popupAddCard.querySelector(".popup__button_save");
 
 const initialCards = [
   {
@@ -80,102 +149,169 @@ const initialCards = [
   },
 ];
 
+// Crear tarjeta
 function createCard(name, link) {
-  //localizamos el template
-  //lo duplicamos
-  //buscamos el nodo de la imagen y colocamos el src y alt
-  //buscamos el nodo del texto y ponemos el textcontent
-  //buscar el boton de like y agregar el evento
-  //buscar el boton de borrar y agregar el evento
-
   const template = document
     .querySelector(".template-card")
     .content.querySelector(".main__gallery-card");
   const card = template.cloneNode(true);
+
   const cardImg = card.querySelector(".main__gallery-image");
   cardImg.src = link;
   cardImg.alt = name;
-  const cardTxt = card.querySelector(".main__gallery-paragraph");
-  cardTxt.textContent = name;
   cardImg.style.cursor = "pointer";
-  cardImg.addEventListener("click", function () {
-    openImagePopup(link, name);
-  });
+  cardImg.addEventListener("click", () => openImagePopup(link, name));
+
+  card.querySelector(".main__gallery-paragraph").textContent = name;
 
   const likeButton = card.querySelector(".main__button_like");
-  likeButton.addEventListener("click", function () {
-    //main__button_like_active
-    likeButton.classList.toggle("main__button_like_active");
-  });
+  likeButton.addEventListener("click", () =>
+    likeButton.classList.toggle("main__button_like_active")
+  );
 
-  const removeCard = card.querySelector(".main__button_trash");
+  const removeButton = card.querySelector(".main__button_trash");
+  removeButton.addEventListener("click", () => card.remove());
 
-  removeCard.addEventListener("click", function () {
-    card.remove();
-  });
   return card;
 }
 
-initialCards.forEach(function (item) {
-  const card = createCard(item.name, item.link);
-  gallery.append(card);
-});
+// Inicializar tarjetas
+initialCards.forEach((item) =>
+  gallery.append(createCard(item.name, item.link))
+);
 
-const addButton = document.querySelector(".main__button_add");
-const popupAddCard = document.querySelector(".popup_add-card");
-const closeButtonAddCard = popupAddCard.querySelector(".popup__button_close");
-const formAddCard = popupAddCard.querySelector(".popup__container");
-const inpNameAddCard = popupAddCard.querySelector(".popup__input_name");
-const inpLink = popupAddCard.querySelector(".popup__input_link");
-const saveButtonAddCard = popupAddCard.querySelector(".popup__button_save");
+// Abrir y cerrar popup agregar tarjeta
+function openPopupAddCard() {
+  inpNameAddCard.value = "";
+  inpLink.value = "";
+  hideError(inpNameAddCard);
+  hideError(inpLink);
+  saveButtonAddCard.disabled = true;
+  openPopup(popupAddCard);
+}
 
-addButton.addEventListener("click", function () {
-  popupAddCard.classList.add("popup_opened");
-});
+function closePopupAddCard() {
+  closePopup(popupAddCard);
+}
 
-closeButtonAddCard.addEventListener("click", function () {
-  popupAddCard.classList.remove("popup_opened");
-});
+addButton.addEventListener("click", openPopupAddCard);
+closeButtonAddCard.addEventListener("click", closePopupAddCard);
 
-formAddCard.addEventListener("submit", function (event) {
-  event.preventDefault();
-  const name = inpNameAddCard.value;
-  const link = inpLink.value;
-  if (name && link) {
-    const card = createCard(name, link);
-    gallery.prepend(card);
-    popupAddCard.classList.remove("popup_opened");
+formAddCard.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const isNameValid = validateInputField(inpNameAddCard);
+  const isLinkValid = validateInputURL(inpLink);
+
+  if (isNameValid && isLinkValid) {
+    gallery.prepend(createCard(inpNameAddCard.value, inpLink.value));
+    closePopupAddCard();
   }
 });
 
-//Img Popup
+inpNameAddCard.addEventListener("input", function () {
+  const isNameValid = validateInputField(inpNameAddCard);
+  const isLinkFilled = inpLink.value.trim() !== "";
+  saveButtonAddCard.disabled = !(isNameValid && isLinkFilled);
+});
+
+inpLink.addEventListener("input", function () {
+  const isLinkValid = validateInputURL(inpLink);
+  const isNameValid = validateInputField(inpNameAddCard);
+  saveButtonAddCard.disabled = !(isNameValid && isLinkValid);
+});
+
+// --- POPUP IMAGEN ---
 const popupImage = document.querySelector(".popup_image");
 
-let popupImg, popupCaption, closeImagePopup;
 if (popupImage) {
-  popupImg = popupImage.querySelector(".popup__img");
-  popupCaption = popupImage.querySelector(".popup__caption");
-  closeImagePopup = popupImage.querySelector(".popup__button_close");
+  const popupImg = popupImage.querySelector(".popup__img");
+  const popupCaption = popupImage.querySelector(".popup__caption");
+  const closeImagePopup = popupImage.querySelector(".popup__button_close");
 
   function openImagePopup(src, alt) {
-    if (!popupImage) return;
     popupImg.src = src;
     popupImg.alt = alt || "";
     popupCaption.textContent = alt || "";
-    popupImage.classList.add("popup_opened");
+    openPopup(popupImage);
   }
 
-  closeImagePopup.addEventListener("click", () => {
-    popupImage.classList.remove("popup_opened");
+  function closeImagePopupFunc() {
+    closePopup(popupImage);
     popupImg.src = "";
+  }
+
+  closeImagePopup.addEventListener("click", closeImagePopupFunc);
+  popupImage.addEventListener("mousedown", (e) => {
+    if (e.target === popupImage) closeImagePopupFunc();
   });
 
-  popupImage.addEventListener("click", function (e) {});
+  // Exponer función globalmente
+  window.openImagePopup = openImagePopup;
+}
 
-  popupImage.addEventListener("click", (e) => {
-    if (e.target === popupImage) {
-      popupImage.classList.remove("popup_opened");
-      popupImg.src = "";
-    }
+// --- Cerrar popup al hacer clic fuera del contenido ---
+document.querySelectorAll(".popup").forEach((popup) => {
+  popup.addEventListener("mousedown", (e) => {
+    if (e.target === popup) closePopup(popup);
+  });
+});
+
+// --- Cerrar popup con tecla ESC ---
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    const openedPopup = document.querySelector(".popup.popup_opened");
+    if (openedPopup) closePopup(openedPopup);
+  }
+});
+
+// --- Función general de validación (para consistencia futura) ---
+function enableValidation(config) {
+  const forms = document.querySelectorAll(config.formSelector);
+  if (!forms.length) return;
+
+  forms.forEach((form) => {
+    const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+    const submitButton = form.querySelector(config.submitButtonSelector);
+
+    if (!submitButton) return;
+
+    const hasInvalidInput = () =>
+      inputs.some(
+        (input) =>
+          !(
+            (input.classList.contains("popup__input_link") &&
+              validateInputURL(input)) ||
+            validateInputField(input)
+          )
+      );
+
+    const toggleButtonState = () => {
+      if (hasInvalidInput()) {
+        submitButton.disabled = true;
+        submitButton.classList.add(config.inactiveButtonClass);
+      } else {
+        submitButton.disabled = false;
+        submitButton.classList.remove(config.inactiveButtonClass);
+      }
+    };
+
+    inputs.forEach((input) => {
+      input.addEventListener("input", toggleButtonState);
+    });
+
+    form.addEventListener("submit", (e) => {
+      if (hasInvalidInput()) e.preventDefault();
+    });
+
+    toggleButtonState();
   });
 }
+
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button_save",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+});

@@ -1,25 +1,26 @@
 .popup {
   display: none;
-  width: 880px;
-  height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   position: fixed;
-  align-content: center;
-  z-index: 1;
-  color: #000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
   background-color: rgba(0, 0, 0, 0.5);
+  color: #000;
+  box-sizing: border-box;
 }
 
 .popup_opened {
-  display: block;
+  display: flex;
 }
 
 .popup__button:disabled {
   background-color: #aaa;
-  cursor: default;
-  opacity: 0.5;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .popup__button {
@@ -74,6 +75,57 @@
   margin-bottom: 30px;
   border-bottom: 1px solid #000;
 }
+.popup__input_type_error {
+  border-bottom: 1px solid red;
+}
+
+.popup__error_visible {
+  color: red;
+  font-size: 12px;
+  display: block;
+}
+
+/* Cuando el campo tiene error */
+.popup__input.error {
+  border-bottom: 1px solid red;
+}
+
+/* Mensajes de error (debajo de los inputs) */
+.error-message {
+  color: red;
+  font-size: 12px;
+  line-height: 1.2;
+  margin-top: -25px; /* se ajusta para que el texto quede justo debajo del input */
+  margin-bottom: 20px;
+  min-height: 14px;
+  display: none; /* se muestra con JS */
+}
+
+/* Botón guardar deshabilitado */
+.popup__button_save:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Botón guardar activo */
+.popup__button_save {
+  width: 100%;
+  background-color: #000;
+  padding: 10px;
+  margin-bottom: 40px;
+  border: none;
+  border-radius: 2px;
+  font-weight: 500;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.popup__button_save:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+/* --- FIN DE LOS NUEVOS ESTILOS --- */
 
 .popup__button_save {
   width: 100%;
