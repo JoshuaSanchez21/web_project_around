@@ -31,7 +31,7 @@ const inpNameAddCard = popupAddCard.querySelector(".popup__input_name");
 const inpLink = popupAddCard.querySelector(".popup__input_link");
 const saveButtonAddCard = popupAddCard.querySelector(".popup__button_save");
 
-// tarjetas iniciales (igual que antes)
+// tarjetas iniciales
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -65,7 +65,7 @@ function openPopupProfile() {
   // limpiar campos y errores antes de abrir
   inpName.value = "";
   inpAbout.value = "";
-  // asegurarse que el validator inicialice el botón; nada más aquí
+  // funcion de openPopup en uils.js
   openPopup(popupProfile);
 }
 
@@ -106,8 +106,7 @@ addCardFormValidator.enableValidation();
 // Envío perfil
 formProfile.addEventListener("submit", function (e) {
   e.preventDefault();
-  // validamos campos usando la misma lógica de show/hide que FormValidator (invocamos _checkInputValidity vía público no existe)
-  // como FormValidator muestra errores en cada input en 'input', validamos manualmente aquí:
+  //validacion de los campos
   const nameValid = inpName.value.trim().length >= 2;
   const aboutValid = inpAbout.value.trim().length >= 2;
 
@@ -121,7 +120,7 @@ formProfile.addEventListener("submit", function (e) {
 // abrir/guardar add-card
 formAddCard.addEventListener("submit", function (e) {
   e.preventDefault();
-  // validaciones sencillas (FormValidator ya muestra errores en input event)
+  // validaciones sencillas del FormValidator
   const nameOk = inpNameAddCard.value.trim().length >= 2;
   const linkOk =
     inpLink.value.trim().startsWith("http://") ||
@@ -137,7 +136,7 @@ formAddCard.addEventListener("submit", function (e) {
   }
 });
 
-/* ---------- Inicializar tarjetas (instancias de Card) ---------- */
+/* ---------- Inicializar tarjetas ---------- */
 initialCards.forEach((item) => {
   const card = new Card(item, ".template-card");
   gallery.append(card.createCard());
@@ -153,5 +152,5 @@ closeButtonAddCard.addEventListener("click", closePopupAddCard);
 /* ---------- Habilitar listeners globales (clic fuera / ESC) ---------- */
 enableGlobalPopupListeners();
 
-/* ---------- Export (si se necesita) ---------- */
+/* ---------- Export ---------- */
 export { openImagePopup };

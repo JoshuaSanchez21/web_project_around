@@ -73,7 +73,7 @@ export default class FormValidator {
     );
   }
 
-  // validaciones "silenciosas" que no muestran error (útil para toggle)
+  // validaciones "silenciosas" que no muestran error
   _validateTextSilent(input) {
     const value = input.value.trim();
     if (value === "") return false;
