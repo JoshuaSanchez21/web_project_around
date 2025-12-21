@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Al rededor de los EE.UU.</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- Popup Confirmar Eliminación -->
+      <div class="popup popup_confirm">
+        <form class="popup__container popup__form" novalidate>
+          <button type="button" class="popup__button popup__button_close">
+            X
+          </button>
+          <h2 class="popup__subtitle">¿Estás seguro/a?</h2>
+          <fieldset class="popup__content">
+            <button type="submit" class="popup__button popup__button_save">
+              Sí
+            </button>
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- Popup Editar Perfil -->
+      <div class="popup popup_profile">
+        <form
+          class="popup__container popup__form"
+          name="profile-form"
+          novalidate
+        >
+          <button type="button" class="popup__button popup__button_close">
+            X
+          </button>
+          <h2 class="popup__subtitle">Editar Perfil</h2>
+          <fieldset class="popup__content">
+            <input
+              type="text"
+              name="name"
+              class="popup__input popup__input_name"
+              placeholder="Nombre"
+              required
+              minlength="2"
+            />
+            <p class="error-message"></p>
+            <input
+              type="text"
+              name="about"
+              class="popup__input popup__input_about"
+              placeholder="Acerca de mí"
+              required
+              minlength="2"
+            />
+            <p class="error-message"></p>
+          </fieldset>
+          <fieldset class="popup__content">
+            <button
+              type="submit"
+              class="popup__button popup__button_save"
+              disabled
+            >
+              Guardar
+            </button>
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- Popup Añadir Tarjeta -->
+      <div class="popup popup_add-card">
+        <form class="popup__container popup__form" name="card-form" novalidate>
+          <button type="button" class="popup__button popup__button_close">
+            X
+          </button>
+          <h2 class="popup__subtitle">Agregar Tarjeta</h2>
+          <fieldset class="popup__content">
+            <input
+              type="text"
+              name="title"
+              class="popup__input popup__input_name"
+              placeholder="Nombre"
+              required
+              minlength="2"
+              maxlength="30"
+            />
+            <p class="error-message"></p>
+            <input
+              type="url"
+              name="link"
+              class="popup__input popup__input_link"
+              placeholder="https://"
+              required
+            />
+            <p class="error-message"></p>
+          </fieldset>
+          <fieldset class="popup__content">
+            <button
+              type="submit"
+              class="popup__button popup__button_save"
+              disabled
+            >
+              Crear
+            </button>
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- Popup Imagen -->
+      <div class="popup popup_image">
+        <div class="popup__container popup__container_image">
+          <button type="button" class="popup__button popup__button_close">
+            X
+          </button>
+          <img src="" alt="" class="popup__img" />
+          <p class="popup__caption"></p>
+        </div>
+      </div>
+
+      <!-- NUEVO: Popup Editar Avatar -->
+      <div class="popup popup_avatar">
+        <form
+          class="popup__container popup__form"
+          name="avatar-form"
+          novalidate
+        >
+          <button type="button" class="popup__button popup__button_close">
+            X
+          </button>
+          <h2 class="popup__subtitle">Actualizar foto de perfil</h2>
+          <fieldset class="popup__content">
+            <input
+              type="url"
+              name="avatar"
+              class="popup__input popup__input_link"
+              placeholder="https://"
+              required
+            />
+            <p class="error-message"></p>
+          </fieldset>
+          <fieldset class="popup__content">
+            <button
+              type="submit"
+              class="popup__button popup__button_save"
+              disabled
+            >
+              Guardar
+            </button>
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- Header -->
+      <header class="header">
+        <img
+          src="./images/logo.svg"
+          alt="Logo Around the U.S."
+          class="header__image"
+        />
+      </header>
+
+      <!-- Main -->
+      <main class="main">
+        <section class="main__profile">
+          <div class="main__profile-image">
+            <img class="main__profile-photo" />
+            <!-- NUEVO: Botón de editar avatar (se muestra en hover) -->
+            <button
+              type="button"
+              class="main__button main__button_edit-avatar"
+              aria-label="Editar foto de perfil"
+            >
+              🖌
+            </button>
+          </div>
+          <div class="main__profile-description">
+            <p class="main__paragraph main__paragraph_name"></p>
+            <p class="main__paragraph main__paragraph_role"></p>
+            <button
+              type="button"
+              class="main__button main__button_edit"
+              aria-label="Editar perfil"
+            >
+              🖌
+            </button>
+          </div>
+          <button
+            type="button"
+            class="main__button main__button_add"
+            aria-label="Añadir foto"
+          >
+            🞣
+          </button>
+        </section>
+
+        <section class="main__gallery">
+          <!-- Las tarjetas se insertan aquí con JS -->
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p class="footer__copyright">© 2025 Around The U.S.</p>
+      </footer>
+
+      <!-- Template de tarjeta -->
+      <template id="card-template">
+        <div class="main__gallery-card">
+          <img src="#" alt="#" class="main__gallery-image" />
+          <button
+            type="button"
+            class="main__button main__button_trash"
+            aria-label="Eliminar"
+          ></button>
+          <div class="main__gallery-content">
+            <p class="main__gallery-paragraph"></p>
+            <button
+              type="button"
+              class="main__button main__button_like"
+              aria-label="Me gusta"
+            ></button>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <script type="module" src="./scripts/index.js"></script>
+  </body>
+</html>
